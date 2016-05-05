@@ -1,0 +1,51 @@
+ProjectManagerBundle\Entity\Events:
+    type: entity
+    table: events
+    indexes:
+        fk_events_users:
+            columns:
+                - user_id
+    id:
+        eventId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: event_id
+            generator:
+                strategy: IDENTITY
+    fields:
+        eventName:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: event_name
+        startDate:
+            type: datetime
+            nullable: false
+            column: start_date
+        endDate:
+            type: datetime
+            nullable: false
+            column: end_date
+        details:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+    manyToOne:
+        user:
+            targetEntity: Users
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,53 @@
+ProjectManagerBundle\Entity\ProjectPhases:
+    type: entity
+    table: project_phases
+    indexes:
+        fk_project_phase_projects:
+            columns:
+                - project_id
+        fk_project_phase_phase_status:
+            columns:
+                - phase_status_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        dueDate:
+            type: date
+            nullable: true
+            column: due_date
+    manyToOne:
+        project:
+            targetEntity: Projects
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                project_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        phaseStatus:
+            targetEntity: PhaseStatus
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                phase_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

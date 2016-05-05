@@ -1,0 +1,76 @@
+ProjectManagerBundle\Entity\Discussions:
+    type: entity
+    table: discussions
+    indexes:
+        fk_discussion_projects:
+            columns:
+                - project_id
+        fk_discussion_users:
+            columns:
+                - user_id
+        fk_discussion_discussion_status:
+            columns:
+                - discussion_status_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        assignedTo:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+            column: assigned_to
+    manyToOne:
+        project:
+            targetEntity: Projects
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                project_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        user:
+            targetEntity: Users
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        discussionStatus:
+            targetEntity: DiscussionStatus
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                discussion_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

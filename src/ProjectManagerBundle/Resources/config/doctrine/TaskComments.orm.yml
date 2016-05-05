@@ -1,0 +1,93 @@
+ProjectManagerBundle\Entity\TaskComments:
+    type: entity
+    table: task_comments
+    indexes:
+        fk_task_comments_pople:
+            columns:
+                - created_by
+        fk_task_comments_tasks:
+            columns:
+                - task_id
+        fk_task_comments_status:
+            columns:
+                - task_status_id
+        fk_task_comments_priority:
+            columns:
+                - task_priority_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        dueDate:
+            type: date
+            nullable: true
+            column: due_date
+        workedHours:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: worked_hours
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        progress:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+    manyToOne:
+        task:
+            targetEntity: Tasks
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                task_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        createdBy:
+            targetEntity: Users
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                created_by:
+                    referencedColumnName: id
+            orphanRemoval: false
+        taskStatus:
+            targetEntity: TaskStatus
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                task_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        taskPriority:
+            targetEntity: TaskPriority
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                task_priority_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

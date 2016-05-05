@@ -1,0 +1,85 @@
+ProjectManagerBundle\Entity\Projects:
+    type: entity
+    table: projects
+    indexes:
+        fk_project_project_status:
+            columns:
+                - project_status_id
+        fk_project_project_types:
+            columns:
+                - project_types_id
+        fk_project_pople:
+            columns:
+                - created_by
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        team:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        orderTaskBy:
+            type: string
+            nullable: true
+            length: 64
+            options:
+                fixed: false
+            column: order_task_by
+    manyToOne:
+        projectStatus:
+            targetEntity: ProjectStatus
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                project_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        projectTypes:
+            targetEntity: ProjectTypes
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                project_types_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        createdBy:
+            targetEntity: Users
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                created_by:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

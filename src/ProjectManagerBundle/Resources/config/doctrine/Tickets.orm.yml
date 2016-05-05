@@ -1,0 +1,98 @@
+ProjectManagerBundle\Entity\Tickets:
+    type: entity
+    table: tickets
+    indexes:
+        fk_ticket_users:
+            columns:
+                - user_id
+        fk_ticket_ticket_status:
+            columns:
+                - ticket_status_id
+        fk_ticket_ticket_types:
+            columns:
+                - ticket_types_id
+        fk_ticket_projects:
+            columns:
+                - project_id
+        fk_ticket_departments:
+            columns:
+                - departments_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+    manyToOne:
+        ticketStatus:
+            targetEntity: TicketStatus
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ticket_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ticketTypes:
+            targetEntity: TicketTypes
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ticket_types_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        user:
+            targetEntity: Users
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        project:
+            targetEntity: Projects
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                project_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        departments:
+            targetEntity: Departments
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                departments_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

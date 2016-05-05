@@ -1,0 +1,40 @@
+ProjectManagerBundle\Entity\TaskPriority:
+    type: entity
+    table: task_priority
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        icon:
+            type: string
+            nullable: true
+            length: 64
+            options:
+                fixed: false
+        sortOrder:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: sort_order
+        defaultValue:
+            type: boolean
+            nullable: true
+            column: default_value
+        active:
+            type: boolean
+            nullable: true
+    lifecycleCallbacks: {  }

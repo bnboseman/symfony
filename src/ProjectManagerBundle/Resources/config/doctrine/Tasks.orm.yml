@@ -1,0 +1,199 @@
+ProjectManagerBundle\Entity\Tasks:
+    type: entity
+    table: tasks
+    indexes:
+        fk_task_projects:
+            columns:
+                - project_id
+        fk_task_task_status:
+            columns:
+                - task_status_id
+        fk_task_task_type:
+            columns:
+                - task_type_id
+        fk_task_task_label:
+            columns:
+                - task_label_id
+        fk_task_project_phases:
+            columns:
+                - project_phase_id
+        fk_task_pople:
+            columns:
+                - created_by
+        fk_task_task_groups:
+            columns:
+                - task_groups_id
+        fk_task_versions:
+            columns:
+                - version_id
+        fk_task_task_priority:
+            columns:
+                - task_priority_id
+        fk_task_tickets:
+            columns:
+                - ticket_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        assignedTo:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: assigned_to
+        estimatedTime:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: estimated_time
+        dueDate:
+            type: date
+            nullable: true
+            column: due_date
+        createdAt:
+            type: datetime
+            nullable: true
+            column: created_at
+        closedDate:
+            type: date
+            nullable: true
+            column: closed_date
+        discussionId:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: discussion_id
+        startDate:
+            type: date
+            nullable: true
+            column: start_date
+        progress:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+    manyToOne:
+        project:
+            targetEntity: Projects
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                project_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        ticket:
+            targetEntity: Tickets
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ticket_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        taskStatus:
+            targetEntity: TaskStatus
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                task_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        taskPriority:
+            targetEntity: TaskPriority
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                task_priority_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        taskType:
+            targetEntity: TaskTypes
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                task_type_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        taskLabel:
+            targetEntity: TaskLabels
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                task_label_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        taskGroups:
+            targetEntity: TaskGroups
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                task_groups_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        projectPhase:
+            targetEntity: ProjectPhases
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                project_phase_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        version:
+            targetEntity: Versions
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                version_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        createdBy:
+            targetEntity: Users
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                created_by:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

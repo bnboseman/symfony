@@ -1,0 +1,119 @@
+ProjectManagerBundle\Entity\UserReports:
+    type: entity
+    table: user_reports
+    indexes:
+        fk_user_reports_users:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        displayOnHome:
+            type: boolean
+            nullable: true
+            column: display_on_home
+        projectId:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: project_id
+        projectTypeId:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: project_type_id
+        projectStatusId:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: project_status_id
+        assignedTo:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: assigned_to
+        taskStatusId:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: task_status_id
+        taskTypeId:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: task_type_id
+        taskLabelId:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: task_label_id
+        dueDateFrom:
+            type: date
+            nullable: true
+            column: due_date_from
+        dueDateTo:
+            type: date
+            nullable: true
+            column: due_date_to
+        createdFrom:
+            type: date
+            nullable: true
+            column: created_from
+        createdTo:
+            type: date
+            nullable: true
+            column: created_to
+        closedFrom:
+            type: date
+            nullable: true
+            column: closed_from
+        closedTo:
+            type: date
+            nullable: true
+            column: closed_to
+        sortOrder:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: sort_order
+    manyToOne:
+        user:
+            targetEntity: Users
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

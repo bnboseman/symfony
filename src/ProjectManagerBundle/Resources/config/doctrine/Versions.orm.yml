@@ -1,0 +1,59 @@
+ProjectManagerBundle\Entity\Versions:
+    type: entity
+    table: versions
+    indexes:
+        fk_version_version_status:
+            columns:
+                - version_status_id
+        fk_version_projects:
+            columns:
+                - project_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        description:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+        dueDate:
+            type: date
+            nullable: true
+            column: due_date
+    manyToOne:
+        project:
+            targetEntity: Projects
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                project_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        versionStatus:
+            targetEntity: VersionStatus
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                version_status_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

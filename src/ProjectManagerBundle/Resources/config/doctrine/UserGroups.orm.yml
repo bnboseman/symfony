@@ -1,0 +1,57 @@
+ProjectManagerBundle\Entity\UserGroups:
+    type: entity
+    table: user_groups
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        allowViewAll:
+            type: boolean
+            nullable: true
+            column: allow_view_all
+        allowManageProjects:
+            type: boolean
+            nullable: true
+            column: allow_manage_projects
+        allowManageTasks:
+            type: boolean
+            nullable: true
+            column: allow_manage_tasks
+        allowManageTickets:
+            type: boolean
+            nullable: true
+            column: allow_manage_tickets
+        allowManageUsers:
+            type: boolean
+            nullable: true
+            column: allow_manage_users
+        allowManageConfiguration:
+            type: boolean
+            nullable: true
+            column: allow_manage_configuration
+        allowManageTaskViewonly:
+            type: boolean
+            nullable: true
+            column: allow_manage_task_viewonly
+        allowManageDiscussions:
+            type: boolean
+            nullable: true
+            column: allow_manage_discussions
+        allowManageDiscussionViewonly:
+            type: boolean
+            nullable: true
+            column: allow_manage_discussion_viewonly
+    lifecycleCallbacks: {  }

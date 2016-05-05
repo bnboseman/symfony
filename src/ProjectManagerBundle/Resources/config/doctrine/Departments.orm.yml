@@ -1,0 +1,45 @@
+ProjectManagerBundle\Entity\Departments:
+    type: entity
+    table: departments
+    indexes:
+        fk_departments_users:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 64
+            options:
+                fixed: false
+                default: ''
+        sortOrder:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: sort_order
+        active:
+            type: boolean
+            nullable: true
+    manyToOne:
+        user:
+            targetEntity: Users
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

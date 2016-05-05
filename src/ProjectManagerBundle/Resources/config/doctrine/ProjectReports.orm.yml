@@ -1,0 +1,81 @@
+ProjectManagerBundle\Entity\ProjectReports:
+    type: entity
+    table: project_reports
+    indexes:
+        user_id:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+                default: ''
+        displayOnHome:
+            type: boolean
+            nullable: true
+            column: display_on_home
+        projectId:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: project_id
+        projectTypeId:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: project_type_id
+        projectStatusId:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: project_status_id
+        inTeam:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: in_team
+        sortOrder:
+            type: integer
+            nullable: true
+            options:
+                unsigned: false
+            column: sort_order
+        displayInMenu:
+            type: boolean
+            nullable: true
+            column: display_in_menu
+        visibleOnHome:
+            type: boolean
+            nullable: true
+            column: visible_on_home
+    manyToOne:
+        user:
+            targetEntity: Users
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

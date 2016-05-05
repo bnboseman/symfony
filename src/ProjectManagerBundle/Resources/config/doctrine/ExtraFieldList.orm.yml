@@ -1,0 +1,42 @@
+ProjectManagerBundle\Entity\ExtraFieldList:
+    type: entity
+    table: extra_field_list
+    indexes:
+        fk_extra_field_list_extra_fields:
+            columns:
+                - extra_field_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        bindId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+                default: '0'
+            column: bind_id
+        value:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+    manyToOne:
+        extraField:
+            targetEntity: ExtraFields
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                extra_field_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
